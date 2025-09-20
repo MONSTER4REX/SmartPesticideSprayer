@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiRakshak - Agricultural Health Monitoring System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .box-container {
+            display: none;
+        }
+
+        .box-container.active {
+            display: block;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <div class="text-3xl mr-3">🌱</div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">KrishiRakshak</h1>
+                        <p class="text-sm text-gray-600">Agricultural Health Monitoring System</p>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-500">
+                    Remote Access Enabled
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Dashboard View -->
+        <div id="dashboard">
+            <!-- Welcome Section -->
+            <div class="text-center mb-8">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Welcome to KrishiRakshak
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Your comprehensive agricultural health monitoring solution with remote access capabilities.
+                    Start with photo capture or explore other features below.
+                </p>
+            </div>
+
+            <!-- Main Photo Capture Box (Large) -->
+            <div class="mb-8">
+                <div onclick="showBox('photo')" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 border border-gray-200">
+                    <div class="p-12 text-center">
+                        <div class="text-8xl mb-6">📸</div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Photo Capture</h3>
+                        <p class="text-gray-600 text-lg mb-4">Capture photos via camera or file upload for agricultural health analysis</p>
+                        <div class="inline-flex items-center px-6 py-3 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                            🌱 Main Feature - Click to Access
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Features Grid (Smaller) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div onclick="showBox('infection')" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-200">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">🔍</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Infection Detection</h3>
+                        <p class="text-gray-600 text-sm">Detect and analyze infection levels</p>
+                    </div>
+                </div>
+
+                <div onclick="showBox('pesticide')" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-200">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">⏰</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Pesticide Timer</h3>
+                        <p class="text-gray-600 text-sm">Schedule and track pesticide applications</p>
+                    </div>
+                </div>
+
+                <div onclick="showBox('health')" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-200">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">📊</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Health Monitoring</h3>
+                        <p class="text-gray-600 text-sm">Monitor overall crop health metrics</p>
+                    </div>
+                </div>
+
+                <div onclick="showBox('remote')" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-200">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">🌐</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Remote Access</h3>
+                        <p class="text-gray-600 text-sm">Access and control remotely</p>
+                    </div>
+                </div>
+
+                <div onclick="showBox('profile')" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-200">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">👤</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Profile</h3>
+                        <p class="text-gray-600 text-sm">Manage your profile and farm details</p>
+                    </div>
+                </div>
+
+                <div onclick="showBox('settings')" class="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 border border-gray-200">
+                    <div class="p-6 text-center">
+                        <div class="text-4xl mb-3">⚙️</div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Settings</h3>
+                        <p class="text-gray-600 text-sm">Configure system preferences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box Containers -->
+        <div id="box-containers">
+            <!-- Photo Capture Box -->
+            <div id="photo-box" class="box-container bg-white rounded-xl shadow-lg border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <button onclick="showDashboard()" class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors">← Back</button>
+                            <div class="text-2xl mr-3">📸</div>
+                            <h2 class="text-2xl font-bold text-gray-900">Photo Capture</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Capture or Upload Plant Image</h3>
+                            <p class="text-gray-600">Take a photo using your camera or upload an existing image for health analysis</p>
+                        </div>
+
+                        <!-- Camera Section -->
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="text-md font-semibold text-gray-900 mb-4">📷 Camera Capture</h4>
+                            <div class="space-y-4">
+                                <button id="start-camera-btn" onclick="startCamera()" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                    Start Camera
+                                </button>
+                                <div id="camera-container" class="hidden">
+                                    <div class="relative bg-black rounded-lg overflow-hidden">
+                                        <video id="video" autoplay playsInline class="w-full h-64 object-cover"></video>
+                                        <canvas id="canvas" class="hidden"></canvas>
+                                    </div>
+                                    <div class="flex space-x-4 mt-4">
+                                        <button onclick="capturePhoto()" class="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium">
+                                            Capture Photo
+                                        </button>
+                                        <button onclick="stopCamera()" class="flex-1 bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition-colors font-medium">
+                                            Stop Camera
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- File Upload Section -->
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="text-md font-semibold text-gray-900 mb-4">📁 Upload or Capture Photo</h4>
+                            <div class="space-y-4">
+                                <input type="file" id="photo-input" accept="image/*" capture="environment" onchange="handleFileUpload(event)" class="hidden">
+                                <button onclick="document.getElementById('photo-input').click()" class="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors font-medium">
+                                    📸 Choose or Capture Photo
+                                </button>
+                                <button id="upload-btn" onclick="uploadPhoto()" disabled class="w-full bg-gray-400 text-white py-3 px-6 rounded-lg cursor-not-allowed font-medium">
+                                    📤 Upload Photo
+                                </button>
+                                <div id="upload-message" class="hidden p-3 rounded-lg text-center text-sm"></div>
+                            </div>
+                        </div>
+
+                        <!-- Captured Image Display -->
+                        <div id="image-preview" class="bg-gray-50 rounded-lg p-6 hidden">
+                            <h4 class="text-md font-semibold text-gray-900 mb-4">📸 Captured Image</h4>
+                            <div class="space-y-4">
+                                <div class="relative">
+                                    <img id="preview-img" src="" alt="Captured plant" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+                                </div>
+                                <div class="flex space-x-4">
+                                    <button onclick="analyzeImage()" class="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium">
+                                        Analyze Image
+                                    </button>
+                                    <button onclick="clearImage()" class="flex-1 bg-gray-600 text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors font-medium">
+                                        Clear Image
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analysis Results -->
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h4 class="text-md font-semibold text-blue-900 mb-2">🔬 Analysis Features</h4>
+                            <ul class="text-blue-800 space-y-1">
+                                <li>• Disease detection and classification</li>
+                                <li>• Pest identification</li>
+                                <li>• Nutrient deficiency analysis</li>
+                                <li>• Growth stage assessment</li>
+                                <li>• Health score calculation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infection Detection Box -->
+            <div id="infection-box" class="box-container bg-white rounded-xl shadow-lg border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <button onclick="showDashboard()" class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors">← Back</button>
+                            <div class="text-2xl mr-3">🔍</div>
+                            <h2 class="text-2xl font-bold text-gray-900">Infection Detection</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Infection Level Detection</h3>
+                            <p class="text-gray-600">Real-time analysis of plant diseases, pests, and overall health status</p>
+                        </div>
+
+                        <!-- Scan Button -->
+                        <div class="text-center">
+                            <button id="scan-btn" onclick="startScan()" class="px-8 py-4 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 hover:shadow-lg transition-all">
+                                🔍 Start Infection Scan
+                            </button>
+                        </div>
+
+                        <!-- Overall Infection Level -->
+                        <div id="infection-level" class="border-2 border-yellow-500 bg-yellow-50 rounded-lg p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-900">Overall Infection Level</h4>
+                                    <p class="text-gray-600">Current status of your crops</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-yellow-600 bg-yellow-100">
+                                        MEDIUM
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">Last updated: 2 minutes ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Diseases Detected -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">🦠 Diseases Detected</h4>
+                            <div class="space-y-4">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h5 class="font-medium text-gray-900">Leaf Blight</h5>
+                                        <div class="px-3 py-1 rounded-full text-sm font-medium text-orange-600 bg-orange-100">HIGH</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div><span class="text-gray-600">Affected Area:</span> <span class="ml-2 font-medium">15%</span></div>
+                                        <div><span class="text-gray-600">Confidence:</span> <span class="ml-2 font-medium">92%</span></div>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h5 class="font-medium text-gray-900">Powdery Mildew</h5>
+                                        <div class="px-3 py-1 rounded-full text-sm font-medium text-yellow-600 bg-yellow-100">MEDIUM</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div><span class="text-gray-600">Affected Area:</span> <span class="ml-2 font-medium">8%</span></div>
+                                        <div><span class="text-gray-600">Confidence:</span> <span class="ml-2 font-medium">87%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recommendations -->
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-green-900 mb-4">💡 Recommendations</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><span class="text-green-600 mr-2">•</span><span class="text-green-800">Apply fungicide treatment for Leaf Blight</span></li>
+                                <li class="flex items-start"><span class="text-green-600 mr-2">•</span><span class="text-green-800">Increase air circulation to prevent Powdery Mildew</span></li>
+                                <li class="flex items-start"><span class="text-green-600 mr-2">•</span><span class="text-green-800">Monitor root health and drainage</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Monitoring Box -->
+            <div id="health-box" class="box-container bg-white rounded-xl shadow-lg border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <button onclick="showDashboard()" class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors">← Back</button>
+                            <div class="text-2xl mr-3">📊</div>
+                            <h2 class="text-2xl font-bold text-gray-900">Health Monitoring</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Health Monitoring Dashboard</h3>
+                            <p class="text-gray-600">Real-time monitoring of environmental conditions and crop health metrics</p>
+                        </div>
+
+                        <!-- Monitoring Control -->
+                        <div class="text-center">
+                            <button id="monitor-btn" onclick="toggleMonitoring()" class="px-6 py-3 rounded-lg font-medium text-white bg-green-600 hover:bg-green-700 transition-all">
+                                ▶️ Start Monitoring
+                            </button>
+                            <p class="text-sm text-gray-500 mt-2">Real-time monitoring active</p>
+                        </div>
+
+                        <!-- Metrics Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">🌡️ Temperature</h4>
+                                    <div class="px-3 py-1 rounded-full text-sm font-medium text-green-600 bg-green-100">GOOD</div>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 mb-2" id="temp-value">24.5°C</div>
+                                <div class="text-sm text-gray-600">Optimal: 18-30°C</div>
+                            </div>
+
+                            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">💧 Humidity</h4>
+                                    <div class="px-3 py-1 rounded-full text-sm font-medium text-green-600 bg-green-100">GOOD</div>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 mb-2" id="humidity-value">65%</div>
+                                <div class="text-sm text-gray-600">Optimal: 40-70%</div>
+                            </div>
+
+                            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">🌱 Soil Moisture</h4>
+                                    <div class="px-3 py-1 rounded-full text-sm font-medium text-yellow-600 bg-yellow-100">WARNING</div>
+                                </div>
+                                <div class="text-3xl font-bold text-gray-900 mb-2" id="soil-value">45%</div>
+                                <div class="text-sm text-gray-600">Optimal: 30-70%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Box -->
+            <div id="settings-box" class="box-container bg-white rounded-xl shadow-lg border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <button onclick="showDashboard()" class="mr-4 p-2 hover:bg-gray-100 rounded-lg transition-colors">← Back</button>
+                            <div class="text-2xl mr-3">⚙️</div>
+                            <h2 class="text-2xl font-bold text-gray-900">Settings</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">System Settings</h3>
+                            <p class="text-gray-600">Configure your KrishiRakshak system preferences and monitoring parameters</p>
+                        </div>
+
+                        <!-- Notification Settings -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">🔔 Notification Settings</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <label class="text-sm font-medium text-gray-900">Email Notifications</label>
+                                        <p class="text-sm text-gray-600">Receive alerts and reports via email</p>
+                                    </div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" checked class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Information -->
+                        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">ℹ️ System Information</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                <div><span class="text-gray-600">Version:</span> <span class="ml-2 font-medium">KrishiRakshak v2.1.0</span></div>
+                                <div><span class="text-gray-600">Last Updated:</span> <span class="ml-2 font-medium">December 15, 2024</span></div>
+                                <div><span class="text-gray-600">Database Status:</span> <span class="ml-2 font-medium text-green-600">Connected</span></div>
+                                <div><span class="text-gray-600">Remote Access:</span> <span class="ml-2 font-medium text-green-600">Active</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">© 2024 KrishiRakshak. Advanced Agricultural Health Monitoring System.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let currentBox = null;
+        let isMonitoring = false;
+        let monitoringInterval = null;
+        let stream = null;
+
+        // Navigation functions
+        function showDashboard() {
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('box-containers').style.display = 'none';
+            currentBox = null;
+        }
+
+        function showBox(boxId) {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('box-containers').style.display = 'block';
+
+            // Hide all boxes
+            document.querySelectorAll('.box-container').forEach(box => {
+                box.classList.remove('active');
+            });
+
+            // Show selected box
+            document.getElementById(boxId + '-box').classList.add('active');
+            currentBox = boxId;
+        }
+
+        // Photo Capture Functions
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        width: {
+                            ideal: 1280
+                        },
+                        height: {
+                            ideal: 720
+                        }
+                    }
+                });
+                document.getElementById('video').srcObject = stream;
+                document.getElementById('camera-container').classList.remove('hidden');
+                document.getElementById('start-camera-btn').textContent = 'Camera Active';
+            } catch (error) {
+                alert('Unable to access camera. Please check permissions.');
+            }
+        }
+
+        function capturePhoto() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0);
+
+            const imageData = canvas.toDataURL('image/jpeg');
+            document.getElementById('preview-img').src = imageData;
+            document.getElementById('image-preview').classList.remove('hidden');
+
+            stopCamera();
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            document.getElementById('camera-container').classList.add('hidden');
+            document.getElementById('start-camera-btn').textContent = 'Start Camera';
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('preview-img').src = e.target.result;
+                    document.getElementById('image-preview').classList.remove('hidden');
+                    document.getElementById('upload-btn').disabled = false;
+                    document.getElementById('upload-btn').className = 'w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors font-medium';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function uploadPhoto() {
+    const file = document.getElementById('photo-input').files[0];
+    if (!file) {
+        showMessage("Please choose or capture a photo first!", 'error');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", file);
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/upload", {
+            method: "POST",
+            body: formData
+        });
+        const result = await response.json();
+        showMessage(`✅ Uploaded! Width: ${result.width}, Height: ${result.height}`, 'success');
+    } catch (error) {
+        showMessage("❌ Upload failed! Check backend.", 'error');
+    }
+}
+
+async function analyzeImage() {
+    try {
+        const response = await fetch("http://127.0.0.1:5000/analyze", { method: "POST" });
+        const result = await response.json();
+        alert(`Infection: ${result.infection_percent}%\nRecommendation: ${result.recommendation}`);
+    } catch (error) {
+        alert("❌ Analysis failed!");
+    }
+}
+
+        // Health Monitoring Functions
+        function toggleMonitoring() {
+            const monitorBtn = document.getElementById('monitor-btn');
+            isMonitoring = !isMonitoring;
+
+            if (isMonitoring) {
+                monitorBtn.textContent = '⏸️ Pause Monitoring';
+                monitorBtn.className = 'px-6 py-3 rounded-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-all';
+                startMonitoring();
+            } else {
+                monitorBtn.textContent = '▶️ Start Monitoring';
+                monitorBtn.className = 'px-6 py-3 rounded-lg font-medium text-white bg-green-600 hover:bg-green-700 transition-all';
+                stopMonitoring();
+            }
+        }
+
+        function startMonitoring() {
+            monitoringInterval = setInterval(() => {
+                // Simulate real-time data updates
+                const temp = (24.5 + (Math.random() - 0.5) * 2).toFixed(1);
+                const humidity = Math.max(0, Math.min(100, 65 + (Math.random() - 0.5) * 5)).toFixed(1);
+                const soil = Math.max(0, Math.min(100, 45 + (Math.random() - 0.5) * 3)).toFixed(1);
+
+                document.getElementById('temp-value').textContent = temp + '°C';
+                document.getElementById('humidity-value').textContent = humidity + '%';
+                document.getElementById('soil-value').textContent = soil + '%';
+            }, 2000);
+        }
+
+        function stopMonitoring() {
+            if (monitoringInterval) {
+                clearInterval(monitoringInterval);
+                monitoringInterval = null;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showDashboard();
+        });
+    </script>
+</body>
+
+</html>
